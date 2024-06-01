@@ -3,8 +3,8 @@
 namespace Mary\View\Components;
 
 use Closure;
-use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
+use Illuminate\Contracts\View\View;
 
 class Button extends Component
 {
@@ -30,7 +30,7 @@ class Button extends Component
     ) {
         $this->uuid = "mary" . md5(serialize($this));
         $this->tooltip = $this->tooltip ?? $this->tooltipLeft ?? $this->tooltipRight ?? $this->tooltipBottom;
-        $this->tooltipPosition = $this->tooltipLeft ? 'lg:tooltip-left' : ($this->tooltipRight ? 'lg:tooltip-right' : ($this->tooltipBottom ? 'lg:tooltip-bottom' : 'lg:tooltip-top'));
+        $this->tooltipPosition = $this->tooltipLeft ? 'ltr:lg:tooltip-left rtl:lg:tooltip-right' : ($this->tooltipRight ? 'ltr:lg:tooltip-right rtl:lg:tooltip-left' : ($this->tooltipBottom ? 'lg:tooltip-bottom' : 'lg:tooltip-top'));
     }
 
     public function spinnerTarget(): ?string

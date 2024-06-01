@@ -3,9 +3,9 @@
 namespace Mary\View\Components;
 
 use Closure;
-use Illuminate\Contracts\View\View;
-use Illuminate\Support\Collection;
 use Illuminate\View\Component;
+use Illuminate\Support\Collection;
+use Illuminate\Contracts\View\View;
 
 class SelectGroup extends Component
 {
@@ -74,7 +74,7 @@ class SelectGroup extends Component
 
                 <!-- PREPEND -->
                 @if($prepend)
-                    <div class="rounded-l-lg flex items-center bg-base-200">
+                    <div class="ltr:rounded-l-lg rtl:rounded-r-lg flex items-center bg-base-200">
                         {{ $prepend }}
                     </div>
                 @endif
@@ -85,11 +85,11 @@ class SelectGroup extends Component
                         {{ $attributes->whereDoesntStartWith('class') }}
                         {{ $attributes->class([
                                     'select select-primary w-full font-normal',
-                                    'pl-10' => ($icon),
+                                    'ltr:pl-10 rtl:pr-10' => ($icon),
                                     'h-14' => ($inline),
                                     'pt-3' => ($inline && $label),
-                                    'rounded-l-none' => $prepend,
-                                    'rounded-r-none' => $append,
+                                    'ltr:rounded-l-none rtl:rounded-r-none' => $prepend,
+                                    'ltr:rounded-r-none rtl:rounded-l-none' => $append,
                                     'border border-dashed' => $attributes->has('readonly') && $attributes->get('readonly') == true,
                                     'select-error' => $errors->has($errorFieldName())
                                 ])

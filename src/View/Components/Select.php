@@ -3,9 +3,9 @@
 namespace Mary\View\Components;
 
 use Closure;
-use Illuminate\Contracts\View\View;
-use Illuminate\Support\Collection;
 use Illuminate\View\Component;
+use Illuminate\Support\Collection;
+use Illuminate\Contracts\View\View;
 
 class Select extends Component
 {
@@ -32,8 +32,7 @@ class Select extends Component
         public ?string $errorClass = 'text-red-500 label-text-alt p-1',
         public ?bool $omitError = false,
         public ?bool $firstErrorOnly = false,
-    )
-    {
+    ) {
         $this->uuid = "mary" . md5(serialize($this));
     }
 
@@ -76,7 +75,7 @@ class Select extends Component
 
                 <!-- PREPEND -->
                 @if($prepend)
-                    <div class="rounded-l-lg flex items-center bg-base-200">
+                    <div class="ltr:rounded-l-lg rtl:rounded-r-lg flex items-center bg-base-200">
                         {{ $prepend }}
                     </div>
                 @endif
@@ -87,11 +86,11 @@ class Select extends Component
                         {{ $attributes->whereDoesntStartWith('class') }}
                         {{ $attributes->class([
                                     'select select-primary w-full font-normal',
-                                    'pl-10' => ($icon),
+                                    'ltr:pl-10 rtl:pr-10' => ($icon),
                                     'h-14' => ($inline),
                                     'pt-3' => ($inline && $label),
-                                    'rounded-l-none' => $prepend,
-                                    'rounded-r-none' => $append,
+                                    'ltr:rounded-l-none rtl:rounded-r-none' => $prepend,
+                                    'ltr:rounded-r-none rtl:rounded-l-none' => $append,
                                     'border border-dashed' => $attributes->has('readonly') && $attributes->get('readonly') == true,
                                     'select-error' => $errors->has($errorFieldName())
                                 ])

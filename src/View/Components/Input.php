@@ -3,8 +3,8 @@
 namespace Mary\View\Components;
 
 use Closure;
-use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
+use Illuminate\Contracts\View\View;
 
 class Input extends Component
 {
@@ -31,8 +31,7 @@ class Input extends Component
         public ?string $errorClass = 'text-red-500 label-text-alt p-1',
         public ?bool $omitError = false,
         public ?bool $firstErrorOnly = false,
-    )
-    {
+    ) {
         $this->uuid = "mary" . md5(serialize($this));
     }
 
@@ -125,11 +124,11 @@ class Input extends Component
                                 ->except($money ? 'wire:model' : '')
                                 ->class([
                                     'input input-primary w-full peer',
-                                    'pl-10' => ($icon),
+                                    'ltr:pl-10 rtl:pr-10' => ($icon),
                                     'h-14' => ($inline),
                                     'pt-3' => ($inline && $label),
-                                    'rounded-l-none' => $prefix || $prepend,
-                                    'rounded-r-none' => $suffix || $append,
+                                    'ltr:rounded-l-none rtl:rounded-r-none' => $prefix || $prepend,
+                                    'ltr:rounded-r-none rtl:rounded-l-none' => $suffix || $append,
                                     'border border-dashed' => $attributes->has('readonly') && $attributes->get('readonly') == true,
                                     'input-error' => $errorFieldName() && $errors->has($errorFieldName()) && !$omitError
                             ])

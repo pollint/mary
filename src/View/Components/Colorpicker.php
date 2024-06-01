@@ -3,8 +3,8 @@
 namespace Mary\View\Components;
 
 use Closure;
-use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
+use Illuminate\Contracts\View\View;
 
 class Colorpicker extends Component
 {
@@ -63,8 +63,8 @@ class Colorpicker extends Component
                 <div class="flex" x-data>
                     <div
                         @class([
-                                "rounded-l-lg flex items-center",
-                                "border border-primary border-r-0 px-4 cursor-pointer",
+                                "ltr:rounded-l-lg rtl:rounded-r-lg flex items-center",
+                                "border border-primary ltr:border-r-0 rtl:border-l-0  px-4 cursor-pointer",
                                 "border-0 bg-base-300" => $attributes->has('disabled') && $attributes->get('disabled') == true,
                                 "border-dashed" => $attributes->has('readonly') && $attributes->get('readonly') == true,
                                 "!border-error" => $errorFieldName() && $errors->has($errorFieldName()) && !$omitError
@@ -95,7 +95,7 @@ class Colorpicker extends Component
                                         'pl-10' => ($icon),
                                         'h-14' => ($inline),
                                         'pt-3' => ($inline && $label),
-                                        'rounded-l-none',
+                                        'ltr:rounded-l-none rtl:rounded-r-none',
                                         'border border-dashed' => $attributes->has('readonly') && $attributes->get('readonly') == true,
                                         'input-error' => $errorFieldName() && $errors->has($errorFieldName()) && !$omitError
                                 ])

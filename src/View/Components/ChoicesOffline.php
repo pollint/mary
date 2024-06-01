@@ -4,9 +4,9 @@ namespace Mary\View\Components;
 
 use Closure;
 use Exception;
-use Illuminate\Contracts\View\View;
-use Illuminate\Support\Collection;
 use Illuminate\View\Component;
+use Illuminate\Support\Collection;
+use Illuminate\Contracts\View\View;
 
 class ChoicesOffline extends Component
 {
@@ -79,7 +79,7 @@ class ChoicesOffline extends Component
     {
         $value = data_get($option, $this->optionValue);
 
-        return is_numeric($value) && ! str($value)->startsWith('0') ? $value : "'$value'";
+        return is_numeric($value) && !str($value)->startsWith('0') ? $value : "'$value'";
     }
 
     public function render(): View|Closure|string
@@ -204,7 +204,7 @@ class ChoicesOffline extends Component
 
                         <!-- PREPEND -->
                         @if($prepend)
-                            <div class="rounded-l-lg flex items-center bg-base-200">
+                            <div class="ltr:rounded-l-lg rtl:rounded-r-lg flex items-center bg-base-200">
                                 {{ $prepend }}
                             </div>
                         @endif
@@ -219,9 +219,9 @@ class ChoicesOffline extends Component
                                     "select select-bordered select-primary w-full h-fit pr-16 pb-1 pt-1.5 inline-block cursor-pointer relative",
                                     'border border-dashed' => $isReadonly(),
                                     'select-error' => $errors->has($errorFieldName()),
-                                    'rounded-l-none' => $prepend,
-                                    'rounded-r-none' => $append,
-                                    'pl-10' => $icon,
+                                    'ltr:rounded-l-none rtl:rounded-r-none' => $prepend,
+                                    'ltr:rounded-r-none rtl:rounded-l-none' => $append,
+                                    'ltr:pl-10 rtl:pr-10' => $icon,
                                 ])
                             }}
                         >
